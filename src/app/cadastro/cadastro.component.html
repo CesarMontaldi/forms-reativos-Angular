@@ -17,7 +17,7 @@
 
       <div *ngIf="(nome?.invalid && nome?.touched) || nome?.dirty">
         <app-mensagem *ngIf="nome?.errors?.['required']" 
-          mensagem="O campo nome é obrigátorio!">
+          mensagem="O campo nome é obrigatório!">
         </app-mensagem>
         <app-mensagem *ngIf="nome?.errors?.['minlength']" 
           mensagem="O nome deve ter no mínimo 3 caracteres!">
@@ -40,7 +40,7 @@
         
         <div *ngIf="(nascimento?.invalid && nascimento?.touched) || nascimento?.dirty">
           <app-mensagem *ngIf="nascimento?.errors?.['required']" 
-            mensagem="O campo nascimento é obrigátorio!">
+            mensagem="O campo nascimento é obrigatório!">
           </app-mensagem><br>
           <app-mensagem *ngIf="nascimento?.errors?.['maiorIdadeValidator']"
             mensagem="O usuário deve ter mais de 18 anos!">  
@@ -63,7 +63,7 @@
 
         <div *ngIf="(telefone?.invalid && telefone?.touched) || telefone?.dirty">
           <app-mensagem *ngIf="telefone?.errors?.['required']" 
-            mensagem="O campo telefone é obrigátorio!">
+            mensagem="O campo telefone é obrigatório!">
           </app-mensagem>
           <app-mensagem *ngIf="telefone?.errors?.['pattern']" 
             mensagem="O telefone deve seguir o padrão '(XX) XXXXX-XXXX'">
@@ -86,7 +86,7 @@
 
       <div *ngIf="(email?.invalid && email?.touched) || email?.dirty">
         <app-mensagem  *ngIf="email?.errors?.['required']" 
-          mensagem="O campo email é obrigátorio!">
+          mensagem="O campo email é obrigatório!">
         </app-mensagem>
         <app-mensagem  *ngIf="email?.errors?.['pattern']" 
           mensagem="O email deve seguir o padrão 'exemplo@dominio.com'">
@@ -99,8 +99,26 @@
 
     <div class="formulario__campo">
       <label class="campo__etiqueta" for="cep">CEP</label>
-      <input name="cep" id="cep" class="campo__escrita"/>
-      <div id="erro"></div>
+      <input 
+      name="cep" 
+      id="cep" 
+      class="campo__escrita" 
+      ngModel 
+      required 
+      #cep="ngModel"
+      pattern="^(\d{5})(-?\d{3})$" 
+      minlength="8"
+      maxlength="9"
+      (blur)="consultaCep($event)"/>
+      
+      <div *ngIf="(cep?.invalid && cep?.touched) || cep?.dirty">
+        <app-mensagem *ngIf="cep?.errors?.['required']" 
+          mensagem="O campo de cep é obrigatório!">
+        </app-mensagem>
+        <app-mensagem *ngIf="cep?.errors?.['pattern']" 
+          mensagem="O campo de cep deve seguir esse exemplo 00000-000">
+        </app-mensagem>
+      </div>
     </div>
 
     <div class="formulario__campo">
