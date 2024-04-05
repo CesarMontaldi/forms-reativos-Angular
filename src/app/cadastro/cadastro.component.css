@@ -44,10 +44,11 @@
 
 .formulario__botao {
   background: var(--laranja);
-  padding: 1em 4em;
+  padding: 1em 2em;
   font-weight: 700;
   font-size: 20px;
   line-height: 30px;
+  border-radius: 24px;
   border: none;
   color: var(--branco);
   cursor: pointer;
